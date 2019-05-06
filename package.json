@@ -50,17 +50,18 @@
     "saslprep": "1.0.1"
   },
   "scripts": {
-    "prepublishOnly": "npm run build",
+    "browser-demo": "browserify demo/browser.js > demo/bundle.js",
     "build": "rollup -c",
     "demo": "cd demo && node test.js",
-    "browser-demo": "browserify demo/browser.js > demo/bundle.js",
-    "pdf-guide": "node docs/generate.js",
-    "website": "node docs/generate_website.js",
     "docs": "npm run pdf-guide && npm run website && npm run browser-demo",
+    "export": "browserify --standalone PDFDocument ./js/pdfkit.js > ./export/pdfkit.js",
+    "pdf-guide": "node docs/generate.js",
+    "prepublishOnly": "npm run build",
     "prettier": "prettier {lib,tests,demo,docs}/**/*.js",
     "test": "jest -i",
     "test:integration": "jest integration/ -i",
-    "test:unit": "jest unit/ -i"
+    "test:unit": "jest unit/ -i",
+    "website": "node docs/generate_website.js"
   },
   "main": "js/pdfkit.js",
   "module": "js/pdfkit.es5.js",
